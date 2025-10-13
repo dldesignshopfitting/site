@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DL Design & Shopfitting Pty Ltd | One-Stop Shopfitting & Shop Handyman (Melbourne)</title>
+  <meta name="description" content="DL Design & Shopfitting Pty Ltd — One-stop shopfitting and shop handyman across Melbourne. Fast, tidy, reliable. Email dl.designshopfitting@gmail.com or call 0426 201 006." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0e14;--ink:#e5e7eb;--muted:#94a3b8;--line:#1f2737;--brand:#4f8dfd;--brand-2:#7aa8ff;--container:1080px;--space:clamp(16px,2.5vw,28px);--h1:clamp(28px,4.4vw,44px);--h2:clamp(22px,3.3vw,34px);--lead:clamp(15px,2.5vw,18px)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;scroll-behavior:smooth}
+    a{color:#cfe1ff;text-decoration:none}a:hover{color:#fff}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--container),92vw);margin:auto;padding-inline:clamp(12px,2vw,18px)}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(12,15,20,.8);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:16px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:38px;height:38px;border-radius:12px;background:radial-gradient(120px 120px at 20% 20%,var(--brand-2),var(--brand) 50%,#0a0d12 70%);border:1px solid #2a66f6;display:grid;place-items:center;font-weight:800}
+    .brand h1{font-size:14px;margin:0;font-weight:800}
+    .brand small{color:#94a3b8;display:block}
+    nav.menu{display:flex;gap:18px;flex-wrap:wrap}
+    nav.menu a{color:#d2d8e3;font-weight:700}
+
+    .hotbar{position:fixed;right:12px;bottom:12px;z-index:60}
+    .btn{display:inline-flex;align-items:center;gap:10px;color:#eef3ff;border-radius:999px;padding:10px 16px;line-height:1.1;font-size:clamp(14px,1.6vw,16px);min-height:44px;border:1px solid #1b4ae0;background:linear-gradient(180deg,var(--brand),#1e55f1);box-shadow:0 6px 20px rgba(79,141,253,.25)}
+
+    section{padding:calc(var(--space)*2) 0}
+    section[id]{scroll-margin-top:84px}
+
+    .hero{position:relative;width:100%;min-height:clamp(360px,60vh,520px);display:flex;align-items:center}
+    .hero::before{content:"";position:absolute;inset:0;z-index:0;
+      background-image: linear-gradient(180deg, rgba(11,14,20,.45), rgba(10,13,18,.65)), url('images/hero.jpg'), url('https://images.unsplash.com/photo-1584931412552-b8553e11f297?auto=format&fit=crop&w=1600&q=80');
+      background-color:#0d1320;background-size:cover,cover; background-position:center,center; background-repeat:no-repeat}
+    .hero .container{position:relative;z-index:1;padding:calc(var(--space)*2) 0}
+    .kicker{color:#9cc3ff;font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:12px}
+    h2.section{font-size:var(--h2);margin-bottom:8px}
+    h2.display{font-size:var(--h1);margin:8px 0}
+    p.lead{color:#cfd6e2;font-size:var(--lead);line-height:1.6;max-width:56ch}
+
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .pad{padding:14px}
+
+    #services .lead{margin:0 0 24px}
+    .service{border:1px solid #223251;border-radius:16px;background:linear-gradient(180deg,#0f1726,#0c1422);padding:16px}
+    .service h3{margin:8px 0 6px;font-size:18px}
+    .service p{color:#cfd6e2;margin-bottom:10px}
+    .service ul{margin:0 0 6px 18px;color:#a6b0bf}
+
+    #work .lead{margin-bottom:28px}
+    .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .work-card{border:1px solid #223251;border-radius:16px;background:linear-gradient(180deg,#0f1726,#0c1422);cursor:pointer;overflow:hidden}
+    .work-thumb{aspect-ratio:16/10;background:#0d1524}
+
+    .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .step{border:1px solid #223251;border-radius:16px;padding:16px;background:linear-gradient(180deg,#0f1726,#0c1422)}
+    /* Space between number, title and description */
+    .step .kicker{display:block;margin-bottom:6px}
+    .step h4{margin-top:8px;margin-bottom:14px;font-size:18px;font-weight:800;color:#fff}
+    .step p{margin-top:0;line-height:1.7;color:#cfd6e2}
+
+    #contact{padding:calc(var(--space)*1.5) 0}
+    .contact{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:auto auto;gap:14px}
+    @media (max-width:820px){.contact{grid-template-columns:1fr;grid-template-rows:auto auto auto}}
+    #contact .section{margin-bottom:6px}
+    #contact .lead{margin:0 0 10px}
+    .contact-intro{grid-column:1;grid-row:1}
+    .contact-form{grid-column:1;grid-row:2}
+    .info-card{grid-column:2;grid-row:2}
+    form{display:grid;gap:8px}
+    input,textarea{background:#0d1524;border:1px solid #223251;border-radius:12px;padding:12px 12px;color:#e5e7eb}
+    textarea{min-height:112px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+    .form-actions .btn{min-height:40px;padding:9px 14px}
+    @media(max-width:640px){.form-row{grid-template-columns:1fr}.form-actions{grid-template-columns:1fr}}
+    .panel{border:1px solid #223251;border-radius:16px;background:linear-gradient(180deg,#0f1726,#0c1422);padding:16px;display:flex;flex-direction:column;height:100%}
+    .info-title{margin:0 0 4px;font-size:16px;font-weight:800}
+    .info-sub{margin:0 0 8px;color:#aab4c4;font-size:13px}
+    .info-list li{font-size:14px;color:#cfd6e2}
+    .info-list{gap:6px !important}
+
+    footer{background:#0c0f14;border-top:1px solid #1f2737;color:#e5e7eb}
+    footer .container{max-width:820px;margin:auto;text-align:center;padding:32px 0;font-size:14px;line-height:1.6}
+
+    /* Lightbox grid (up to 16 images; probe existing only) */
+    #lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,6,12,.82);backdrop-filter:blur(6px);z-index:1000}
+    .lb-wrap{position:relative;width:min(96vw,1400px);max-height:90vh;display:flex;flex-direction:column;gap:12px}
+    .lb-preview{border-radius:14px;border:1px solid #223251;background:#0b1120;padding:8px}
+    .lb-preview img{max-height:48vh;margin:auto;display:block;border-radius:10px}
+    .lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;overflow:auto;padding:4px}
+    .lb-grid img{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px solid #223251;cursor:pointer;opacity:.95;transition:opacity .12s,outline .12s,transform .12s}
+    .lb-grid img:hover{opacity:1;transform:translateY(-1px)}
+    .lb-grid img[aria-selected="true"]{outline:2px solid #4f8dfd;opacity:1}
+    .lb-actions{position:absolute;top:-46px;right:0;display:flex;gap:8px}
+    .lb-btn{border:1px solid #2a3a55;background:#0b1120;color:#e5e7eb;border-radius:10px;padding:8px 10px;font-weight:800;cursor:pointer}
+
+    @media (max-width:640px){
+      .hero{min-height:380px}
+      .hero .container{padding:calc(var(--space)*1.5) 0}
+      .kicker{font-size:11px}
+      h2.display{line-height:1.18}
+      p.lead{max-width:100%;margin-top:8px}
+      .lb-preview img{max-height:40vh}
+      .lb-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+      .lb-grid img{height:90px}
+      body{padding-bottom:96px}
+    }
+  
+
+/* removed previous mobile fix */
+@media (max-width:820px){
+  .contact{grid-template-columns:1fr;grid-template-rows:auto auto auto}
+  .contact .contact-intro{grid-column:1;grid-row:1}
+  .contact .contact-form{grid-column:1;grid-row:2}
+  .contact .info-card{grid-column:1 !important;grid-row:3 !important}
+}
+
+
+/* --- Mobile fix v2: force 'Request a quote' vertical stacking --- */
+@media (max-width:900px){
+  .contact{grid-template-columns:1fr !important;grid-template-rows:auto auto auto !important}
+  .contact .contact-intro{grid-column:1 !important;grid-row:1 !important}
+  .contact .contact-form{grid-column:1 !important;grid-row:2 !important}
+  .contact .info-card{grid-column:1 !important;grid-row:3 !important}
+}
+</style>
+</head>
+<body>
+  <div class="hotbar"><a class="btn" href="#contact">Get a Quote</a></div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">DL</div>
+        <div>
+          <h1>DL Design & Shopfitting Pty Ltd</h1>
+          <small>One-stop shopfitting & shop handyman · Melbourne</small>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#services">Services</a>
+        <a href="#work">Projects</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Fast • Tidy • Reliable</span>
+      <h2 class="display">One-Stop Shopfitting & Shop Handyman</h2>
+      <p class="lead">End-to-end retail & office fit-outs, small works and urgent fixes across Melbourne. We work after-hours to avoid your revenue loss.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section">What we do</h2>
+      <p class="lead">Turn-key fit-outs and dependable maintenance for shops and offices across Melbourne.</p>
+      <div class="cards" style="margin-top:12px">
+        <div class="service">
+          <h3>Shopfitting</h3>
+          <p>Layout, partitions, ceilings, counters, joinery coordination, signage, electrical & data (with licensed partners).</p>
+          <ul>
+            <li>Design & documentation</li>
+            <li>Permits & approvals</li>
+            <li>Build & make-good</li>
+          </ul>
+        </div>
+        <div class="service">
+          <h3>Commercial Handyman</h3>
+          <p>Doors & hardware, shelving, patch & paint, fixtures, minor carpentry and flooring repairs.</p>
+          <ul>
+            <li>Urgent fixes & call-outs</li>
+            <li>After-hours & weekend</li>
+            <li>Maintenance programs</li>
+          </ul>
+        </div>
+        <div class="service">
+          <h3>Accessibility & Safety</h3>
+          <p>AS1428 tactile/braille signage, stair nosing, wayfinding, door clearances, and make-good prior to handover.</p>
+          <ul>
+            <li>Audit & punch-list</li>
+            <li>Supply & install</li>
+            <li>Handover photos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container">
+      <h2 class="section">Recent work highlights</h2>
+      <p class="lead">Showcasing our experience and reach — dozens of completed sites across Melbourne.</p>
+      <div class="work-grid">
+        <article class="work-card" data-key="footprint">
+          <div class="work-thumb" style="background-image:url('images/footprint/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Project Footprint</h3><p>A Google Map packed with pins across Greater Melbourne — visual proof of our volume and reach.</p></div>
+        </article>
+        <article class="work-card" data-key="restaurant">
+          <div class="work-thumb" style="background-image:url('images/restaurant/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Restaurant</h3><p>Front-of-house counters, BOH prep, services coordination, durable finishes.</p></div>
+        </article>
+        <article class="work-card" data-key="medical">
+          <div class="work-thumb" style="background-image:url('images/medical/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Medical & Beauty</h3><p>Treatment rooms, joinery, lighting & mirrors, compliant access clearances.</p></div>
+        </article>
+        <article class="work-card" data-key="healthcare">
+          <div class="work-thumb" style="background-image:url('images/healthcare/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Healthcare</h3><p>Waiting areas, nurse stations, wayfinding & safety touch-ups.</p></div>
+        </article>
+        <article class="work-card" data-key="tatts">
+          <div class="work-thumb" style="background-image:url('images/tatts/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Tatts Lotto</h3><p>Kiosk counters, secure cabinetry, signage coordination and power/data.</p></div>
+        </article>
+        <article class="work-card" data-key="milk-tea">
+          <div class="work-thumb" style="background-image:url('images/milk-tea/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Milk Tea Bar</h3><p>Service counters, back bars, wet area coordination, menu lightboxes.</p></div>
+        </article>
+        <article class="work-card" data-key="defit">
+          <div class="work-thumb" style="background-image:url('images/defit/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Defit</h3><p>Strip-out, make-good, patch & paint, ceiling/floor reinstatement.</p></div>
+        </article>
+        <article class="work-card" data-key="handyman">
+          <div class="work-thumb" style="background-image:url('images/handyman/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Shop Handyman</h3><p>Doors, locks, shelving, patch & paint, minor carpentry and fixes.</p></div>
+        </article>
+        <article class="work-card" data-key="detailed-signage">
+          <div class="work-thumb" style="background-image:url('images/detailed-signage/1.jpg');background-size:cover;background-position:center"></div>
+          <div class="pad"><h3>Detailed Signage</h3><p>Precision illuminated and architectural feature signage — compliant and on-brand.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+      <h2 class="section">How we work (simple & clear)</h2>
+      <div class="process">
+        <div class="step"><span class="kicker">01</span><h4>Site visit & quote</h4><p>We meet on-site (or via photos/plan) to confirm scope, timing and budget.</p></div>
+        <div class="step"><span class="kicker">02</span><h4>Design & approvals</h4><p>Drawings as needed for landlord/center approvals and coordination.</p></div>
+        <div class="step"><span class="kicker">03</span><h4>Build & manage</h4><p>We schedule trades, order materials, and run the site with safety in mind.</p></div>
+        <div class="step"><span class="kicker">04</span><h4>Handover & support</h4><p>Practical completion, compliance touch-ups, and post-handover support.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact">
+      <div class="contact-intro">
+
+<div id="thankyou" class="panel" style="display:none;border-color:#1e7a3d;background:linear-gradient(180deg,#0f1f16,#0c1712);margin-bottom:10px">
+  <p style="margin:0;font-weight:700;color:#d1ffe2">✅ Thank you — your request was sent.</p>
+  <p style="margin:6px 0 0;color:#bde5c9">We’ve received your message and will contact you shortly.</p>
+</div>
+        <h2 class="section" style="text-align:left">Request a quote</h2>
+        <p class="lead" style="text-align:left;margin:0 0 10px">We usually reply the same day.</p>
+      </div>
+
+      <div class="contact-form panel">
+        <form name="quoteForm" method="POST" action="https://formsubmit.co/dl.designshopfitting@gmail.com">
+          <input type="hidden" />
+          <input type="hidden" name="subject" value="New quote request from DL Design & Shopfitting website" />
+          <p style="display:none"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
+          <div class="form-row">
+            <input name="name" placeholder="Name*" required />
+            <input name="phone" placeholder="Phone" />
+          </div>
+          <input name="email" type="email" placeholder="Email*" required />
+          <textarea name="message" placeholder="Tell us about your space (size, location, timing)"></textarea>
+          <div class="form-actions">
+            <button class="btn" type="submit">Send Request</button>
+            <button class="btn" type="reset" style="background:transparent;border-color:#2a3a55;color:#dbe7ff">Reset</button>
+          </div>
+        
+<input type="hidden" name="_subject" value="New quote request from website">
+<input type="hidden" name="_next" value="https://dldesignshopfitting.com.au/thanks.html">
+<input type="hidden" name="_captcha" value="false">
+
+</form>
+      </div>
+
+      <aside class="panel info-card" aria-label="Company contact details">
+        <h3 class="info-title">DL Design & Shopfitting Pty Ltd</h3>
+        <p class="info-sub">One-stop shopfitting & shop handyman — Melbourne</p>
+        <ul class="info-list" style="list-style:none;margin:0;padding:0;display:grid;gap:6px">
+          <li>✉️ <a href="mailto:dl.designshopfitting@gmail.com">dl.designshopfitting@gmail.com</a></li>
+          <li>📞 <a href="tel:0426201006">0426 201 006</a></li>
+          <li><span style="color:#9aa3b2">Service area: Greater Melbourne, VIC</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p style="font-weight:700;color:#fff;margin-bottom:4px">DL Design & Shopfitting Pty Ltd</p>
+      <p class="muted" style="margin-bottom:8px">One-stop shopfitting & shop handyman across Melbourne — fit-outs, repairs, compliance & maintenance.</p>
+      <p class="muted" style="margin-bottom:8px">ABN available · Tax invoice provided · EFT & card accepted · After-hours available · Fully insured</p>
+      <p class="muted" style="margin-bottom:8px">
+        <a href="mailto:dl.designshopfitting@gmail.com" style="color:#cfe1ff">dl.designshopfitting@gmail.com</a> | <a href="tel:0426201006" style="color:#cfe1ff">0426 201 006</a><br>
+        Service area: Greater Melbourne & regional VIC
+      </p>
+      <p class="fine" style="margin-top:6px">© <span id="year"></span> DL Design & Shopfitting Pty Ltd · Designed & built with precision — quality fit-outs that last.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox / Gallery Modal (max 16, probe existing only) -->
+  <div id="lightbox" aria-hidden="true">
+    <div class="lb-wrap">
+      <div class="lb-actions">
+        <button id="lb-close" class="lb-btn" aria-label="Close">✕</button>
+        <button id="lb-prev" class="lb-btn" aria-label="Previous">‹</button>
+        <button id="lb-next" class="lb-btn" aria-label="Next">›</button>
+      </div>
+      <div class="lb-preview"><img id="lb-img" alt="Project photo" /></div>
+      <div class="lb-grid" id="lb-grid"></div>
+    </div>
+  </div>
+
+  <script>
+  (function(init){
+    try{ document.readyState==='loading' ? document.addEventListener('DOMContentLoaded', init, {once:true}) : init(); }
+    catch(err){ setTimeout(()=>{ try{ init(); }catch(e){} }, 0); }
+  })(function init(){
+    try{
+      const y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+      function probeImages(key, max=16){
+        const tryLoad = (src)=> new Promise(resolve=>{
+          const img = new Image();
+          img.onload = ()=> resolve(src);
+          img.onerror = ()=> resolve(null);
+          img.src = src;
+        });
+        const paths = Array.from({length:max},(_,i)=>`images/${key}/${i+1}.jpg`);
+        return Promise.all(paths.map(tryLoad)).then(results=> results.filter(Boolean));
+      }
+
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const grid = document.getElementById('lb-grid');
+      const btnPrev = document.getElementById('lb-prev');
+      const btnNext = document.getElementById('lb-next');
+      const btnClose = document.getElementById('lb-close');
+
+      let currentList = [];
+      let currentIdx = 0;
+
+      function select(idx){
+        if(!currentList.length) return;
+        currentIdx = (idx + currentList.length) % currentList.length;
+        lbImg.src = currentList[currentIdx];
+        grid.querySelectorAll('img').forEach((img,i)=> img.setAttribute('aria-selected', i===currentIdx ? 'true':'false'));
+      }
+
+      async function openGallery(key){
+        currentList = await probeImages(key, 16);
+        if(!currentList.length || !lb) return;
+        grid.innerHTML = currentList.map((src,i)=>`<img src="${src}" alt="thumb ${i+1}" data-idx="${i}" loading="lazy">`).join('');
+        grid.querySelectorAll('img').forEach(img=> img.addEventListener('click', ()=> select(parseInt(img.dataset.idx))));
+        lb.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        select(0);
+      }
+      function closeGallery(){
+        if(!lb) return;
+        lb.style.display = 'none';
+        document.body.style.overflow = '';
+        lbImg.removeAttribute('src');
+        grid.innerHTML = '';
+        currentList = [];
+        currentIdx = 0;
+      }
+
+      document.querySelectorAll('.work-card').forEach(card=>{
+        card.addEventListener('click', ()=> openGallery(card.getAttribute('data-key')));
+      });
+
+      if(btnPrev) btnPrev.addEventListener('click', ()=> select(currentIdx-1));
+      if(btnNext) btnNext.addEventListener('click', ()=> select(currentIdx+1));
+      if(btnClose) btnClose.addEventListener('click', closeGallery);
+      if(lb) lb.addEventListener('click', (e)=>{ if(e.target===lb) closeGallery(); });
+      document.addEventListener('keydown', (e)=>{
+        if(lb && lb.style.display==='flex'){
+          if(e.key==='Escape') closeGallery();
+          if(e.key==='ArrowLeft') select(currentIdx-1);
+          if(e.key==='ArrowRight') select(currentIdx+1);
+        }
+      });
+    }catch(e){ console.error('[Init Error suppressed]', e); }
+  });
+  
+// Thank-you banner when Netlify redirects back with ?submitted=true
+(function(){
+  try{
+    var params = new URLSearchParams(location.search);
+    if(params.get('submitted') === 'true'){
+      var t = document.getElementById('thankyou');
+      if(t){ t.style.display = 'block'; }
+      // Clean the URL param after a moment to avoid banner sticking on refresh
+      setTimeout(function(){
+        if(history.replaceState){
+          var url = location.href.replace(/([?&])submitted=true(&|#|$)/, function(_,a, b){ return (b==='#' || b==='$') ? b : a;});
+          try{ history.replaceState(null, '', url); }catch(e){}
+        }
+      }, 1800);
+    }
+  }catch(e){}
+})();
+
+</script>
+</body>
+</html>

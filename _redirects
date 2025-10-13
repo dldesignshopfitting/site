@@ -1,0 +1,8 @@
+# 强制 http → https
+http://*  https://:splat  301!
+
+# www → 主域名（按你当前主域名）
+www.dldesignshopfitting.com.au/*  https://dldesignshopfitting.com.au/:splat  301!
+
+# SPA 回退（修复 /contact 404）
+/*  /index.html  200
