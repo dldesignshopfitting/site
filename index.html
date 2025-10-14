@@ -121,7 +121,6 @@
         </div>
       </div>
       <div class="image">
-        <!-- 修复：此处确保与磁盘一致的大小写 -->
         <img src="images/handyman/1.JPG" alt="Shop handyman working after-hours in Melbourne">
       </div>
     </div>
@@ -168,7 +167,6 @@
       <p class="muted">A mix of make-good, clinic refresh, restaurant fit-out and retail touch-ups.</p>
       <div class="grid grid-3">
         <div class="card">
-          <!-- 修复：大小写 -->
           <img src="images/defit/4.JPG" alt="Defit and make-good project">
           <div class="body">
             <span class="badge">Make-Good</span>
@@ -177,7 +175,6 @@
           </div>
         </div>
         <div class="card">
-          <!-- 修复：大小写 -->
           <img src="images/defit/6.JPG" alt="Clinic corridor works">
           <div class="body">
             <span class="badge">Clinic</span>
@@ -186,7 +183,6 @@
           </div>
         </div>
         <div class="card">
-          <!-- 修复：大小写 -->
           <img src="images/defit/7.JPG" alt="Retail fixture and paint refresh">
           <div class="body">
             <span class="badge">Retail</span>
@@ -214,7 +210,6 @@
           </div>
         </div>
         <div class="card">
-          <!-- 修复：大小写 -->
           <img src="images/detailed-signage/10.JPG" alt="Tactile and braille signage installed">
           <div class="body">
             <span class="badge">Compliance</span>
@@ -242,7 +237,6 @@
           </div>
         </div>
         <div class="card">
-          <!-- 修复：大小写 -->
           <img src="images/detailed-signage/2.JPG" alt="AS1428 stair nosing">
           <div class="body">
             <span class="badge">AS1428</span>
@@ -367,6 +361,31 @@
   <script>
     // year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // 仅修复图片加载逻辑的函数（其余代码不改）
+    function probeImages(key, max = 16){
+      const exts = ['jpg','JPG','jpeg','JPEG','webp','png','PNG'];
+
+      const tryLoad = (src) => new Promise(resolve => {
+        const img = new Image();
+        img.onload  = () => resolve(src);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+
+      // 逐张图片按序尝试不同扩展名，命中第一张即返回
+      async function pickForIndex(i){
+        for (const ext of exts){
+          const src = `images/${key}/${i}.${ext}`;
+          const ok  = await tryLoad(src);
+          if (ok) return ok;
+        }
+        return null;
+      }
+
+      const tasks = Array.from({length: max}, (_, k) => pickForIndex(k + 1));
+      return Promise.all(tasks).then(list => list.filter(Boolean));
+    }
   </script>
 </body>
 </html>
