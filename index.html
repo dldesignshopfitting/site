@@ -10,6 +10,14 @@
   // 基本配置
   gtag('config', 'AW-XXXXXXX');
 </script>
+<!-- 表单提交转化（成功页触发） -->
+<script>
+  gtag('event', 'conversion', {
+    'send_to': 'AW-XXXXXXX/FORM_LABEL',
+    'value': 1.0,
+    'currency': 'AUD'
+  });
+</script>
 
 <head>
   <meta charset="utf-8" />
